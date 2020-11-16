@@ -1,27 +1,26 @@
 <mat-sidenav-container class="example-container">
-
     <mat-sidenav #sidenav mode="side" [(opened)]="opened"class="list">
         <div class="one">
             <div class="profile">
                 <div class="header">
-                    <h2 id="head" style="text-align: center;"> USer name</h2>
-                    <h4 id="head">user email</h4>
-                    <img class="img" (click)="profile()" src="../../assets/logo.PNG">
+                    <h2 class="head" id="username">{{username}}</h2>
+                    <h4 class="head" id="email">{{email}}</h4>
+                    <div id="photo-div">
+                        <img class="img" (click)="profile()" src="../../assets/logo.PNG">
+                    </div>
+                    
                 </div>
             </div>
-            <mat-divider></mat-divider>
-            <button mat-button [routerLink]="['output-graph']">Home</button>
-            <button mat-button [routerLink]="['listUser']">Users</button>
-            <button mat-button (click)="push()">Services</button>
-
-
-            <!-- <button mat-button style="align-items: flex-end;"   [routerLink]="['/main-nav/listService']" [routerLink]="['/main-nav/invoice']">Invoice</button> -->
-
-
-            <button mat-button [routerLink]="['request-app']">Request</button>
-            <button mat-button (click)="logout()">Logout</button>
+            <!-- <mat-divider class="mat-divider"></mat-divider> -->
+            <div id="button-cont">
+                <button mat-button [routerLink]="['output-graph']">Home</button>
+                <!-- <button mat-button [routerLink]="['listUser']">Users</button> -->
+                <button mat-button (click)="push()">Services</button>
+                <!-- <button mat-button style="align-items: flex-end;"   [routerLink]="['/main-nav/listService']" [routerLink]="['/main-nav/invoice']">Invoice</button> -->
+                <button mat-button [routerLink]="['request-app']">Request</button>
+                <button mat-button (click)="logout()">Logout</button>
+            </div>
         </div>
-
     </mat-sidenav>
 
     <mat-sidenav-content>

@@ -20,7 +20,7 @@
     <button (click)="try()">Update</button>
   </div> -->
 <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpened = true" (closed)="panelOpened = false"hideToggle="true">
         <mat-expansion-panel-header>
             <!-- <mat-panel-title>
                 Add ICT Service
@@ -28,6 +28,8 @@
             <mat-panel-description>
                 Add a new ICT service
             </mat-panel-description>
+            <mat-icon *ngIf="!panelOpened" [ngStyle]="{'color':'#D62E2E'}">add</mat-icon>
+            <mat-icon *ngIf="panelOpened" [ngStyle]="{'color':'#D62E2E'}">remove</mat-icon>
         </mat-expansion-panel-header>
         <div class="one">
 

@@ -1,38 +1,40 @@
-<div class="title" style="position: absolute;left:42%;">
+<div class="title" style="position: relative; width: 30%; margin: auto; text-align: center;">
     <h1>User Profile</h1>
 </div>
-
-<div class="container">
-    <div class="button">
-        <img [src]="imgUrl" alt="avatar" (click)="file.click()" height="140" width="95">
-        <input #file type="file" style="display: none;" (change)="uploadFile(file.files)" accept='image/*' />
-        <!--  <input id="file-input1" type="file" accept="image/*" (change)="uploadFile(file.files)" /> -->
+<!-- <div id="cont"></div> -->
+<div id="form-cont">
+    <div class="container">
+        <div class="button">
+            <!-- <img [src]="imgUrl" alt="avatar" (click)="file.click()" height="140" width="95"> -->
+            <input #file type="file" style="display: none;" (change)="uploadFile(file.files)" accept='image/*' />
+            <!--  <input id="file-input1" type="file" accept="image/*" (change)="uploadFile(file.files)" /> -->
+    
+        </div>
+        <form [formGroup]="form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Surname</mat-label>
+                <input matInput formControlName="surname">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Phone no.</mat-label>
+                <input matInput formControlName="number">
+            </mat-form-field>
+        </form>
 
     </div>
-
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <mat-label>Surname</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <mat-label>Phone no.</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <br>
-
-</div>
-<div class="buttons">
-    <button mat-button (click)="updateAdmin()" class="btn">update</button>&nbsp;&nbsp;
-    <button mat-button (click)="logout()" class="btn">LogOut</button>
+    <div class="buttons">
+        <button mat-button (click)="updateAdmin()" class="btn">update</button>&nbsp;&nbsp;
+        <button mat-button (click)="logout()" class="btn">LogOut</button>
+    </div>
 </div>

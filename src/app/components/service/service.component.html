@@ -21,7 +21,7 @@
 
   </table> -->
 <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"hideToggle="true">
         <mat-expansion-panel-header>
             <!-- <mat-panel-title>
                 Add Electrical Service
@@ -29,6 +29,8 @@
             <mat-panel-description>
                 Add a new Electrical service
             </mat-panel-description>
+            <mat-icon *ngIf="!panelOpenState" [ngStyle]="{'color':'#D62E2E'}">add</mat-icon>
+            <mat-icon *ngIf="panelOpenState" [ngStyle]="{'color':'#D62E2E'}">remove</mat-icon>
         </mat-expansion-panel-header>
         <div class="one">
 

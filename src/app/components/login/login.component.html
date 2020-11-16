@@ -2,21 +2,23 @@
     <img src="../../../assets/scc (1).png" style="max-width: 40%; min-width: 30%; max-height: 40%;">
     <h1>Sekhasimbe Conientious Company(pty)ltd</h1>
 </div>
-<div class="loginform">
-    <h1 class="admin">Admin</h1>
-    <form [formGroup]="form">
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
-        </mat-form-field>
-        <br>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
-        </mat-form-field>
-        <button (click)="submit()">Login</button>
-        <p class="failed mat-body-1">{{error}}</p>
-    </form>
+<div id="form-cont">
+    <div class="loginform">
+        <h1 class="admin">Admin</h1>
+        <form [formGroup]="form">
+    
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
+            </mat-form-field>
+            <br>
+    
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
+            </mat-form-field>
+            <button (click)="submit()">Login</button>
+            <p class="failed mat-body-1">{{error}}</p>
+        </form>
+    </div>
 </div>

@@ -1,3 +1,17 @@
+<!-- <button (click)="getPosts()">Get Posts</button> <button (click)='createPost()'>Post Posts</button> <button (click)='sendNotification()'>Accept</button>
+<div *ngIf='newPost != null'>
+    {{ newPost | async | json }}
+</div>
+
+<div *ngIf='signalPost != null'>
+    {{ signalPost | async | json }}
+</div> 
+<div *ngFor="let post of posts | async">
+
+    {{ post | json }}
+    
+</div> -->
+
 <!-- <div class="head"> -->
 <h1 class="invoice">Invoice</h1>
 <mat-card id="container">
@@ -32,8 +46,16 @@
             <br>
             <br>
             <br>
+            <div *ngFor="let post of posts | async">
+
+                {{ post | json }}
+                
+            </div>
             <div class="createinvoice">
-                <button mat-button style="background: rgba(214, 16, 16, 0.781);" (click)="generatePdf()">Create Invoice</button>
+                <!-- <button mat-button style="background: rgba(214, 16, 16, 0.781);" (click)="generatePdf()">Create Invoice</button> -->
+                <button mat-button style="background: rgba(214, 16, 16, 0.781);" (click)="createInvoice()">Create Invoice</button>
+                &nbsp;
+                <button mat-button style="background: rgba(214, 16, 16, 0.781);" (click)="decline()">Decline</button>
 
             </div>
         </mat-step>

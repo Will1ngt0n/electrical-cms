@@ -65,154 +65,63 @@ wait : boolean = false;
 
 
   public options1: any = {
-    chart: {
-      type: 'column'
-  },
-  title: {
-      text: 'Monthly Average Requests'
-  },
-  subtitle: {
-      text: 'Source: SCC Dashboard'
-  },
-  xAxis: {
-      categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-      ],
-      crosshair: true
-  },
-  yAxis: {
-      min: 0,
-      title: {
-          text: 'Requests '
-      }
-  },
-  tooltip: {
-      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-          '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-      footerFormat: '</table>',
-      shared: true,
-      useHTML: true
-  },
-  plotOptions: {
-      column: {
-          pointPadding: 0.2,
-          borderWidth: 0
-      }
-  },
-  series: [{
-
+    chart: { type: 'column' },
+    title: { text: 'Monthly Average Requests' },
+    subtitle: { text: 'Source: SCC Dashboard' },
+    xAxis: { categories: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ], crosshair: true },
+    yAxis: { min: 0, title: { text: 'Requests ' } },
+    tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+    },
+    plotOptions: { column: { pointPadding: 0.2, borderWidth: 0 } },
+    series: [{
     // no of requests made per month
-      
       name: 'Electrical',
       data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-  }, {
+    }, {
       // no of requests made per month
-
       name: 'Plumbing',
       data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-  }, {
+    }, {
       // no of requests made per month
-       
       name: 'ICT',
       data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-  // }, {
-  //     name: 'Berlin',
-  //     data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-  }]
-
+    }]
   }
 
   
     public options2: any = {   
-      data: {
-        table: 'datatable'
-    },
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Data extracted from a HTML table in the page'
-    },
-    yAxis: {
-        allowDecimals: false,
-        title: {
-            text: 'Units'
-        }
-    },
-    tooltip: {
-        formatter: function () {
+      data: { table: 'datatable' },
+      chart: { type: 'column' },
+      title: { text: 'Data extracted from a HTML table in the page' },
+      yAxis: { allowDecimals: false, title: { text: 'Units' } },
+      tooltip: { formatter: function () {
             return '<b>' + this.series.name + '</b><br/>' +
-                this.point.y + ' ' + this.point.name.toLowerCase();
-        }
-    }
-
-}
-
-public option: any = {   
-  data: {
-    table: 'datatable'
-},
-chart: {
-    type: 'line'
-},
-
-
-yAxis: {
-  title: {
-      text: 'Number of Employees'
-  }
-},
-
-xAxis: {
-  accessibility: {
-      rangeDescription: 'Range: 2010 to 2017'
-  }
-},
-
-plotOptions: {
-  series: {
-      label: {
-          connectorAllowed: false
-      },
-      pointStart: 2010
-  }
-},
-
-series: [{
-  name: 'Installation',
-  data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-}, ],
-responsive: {
-  rules: [{
-      condition: {
-          maxWidth: 500
-      },
-      chartOptions: {
-          legend: {
-              layout: 'horizontal',
-              align: 'center',
-              verticalAlign: 'bottom'
+            this.point.y + ' ' + this.point.name.toLowerCase();
           }
+        }
       }
-  }]
-}
-}
+      
+    public option: any = {
+      data: { table: 'datatable' },
+      chart: { type: 'line' },
+      yAxis: { title: { text: 'Number of Employees' } },
+      xAxis: { accessibility: { rangeDescription: 'Range: 2010 to 2017' } },
+      plotOptions: { series: { label: { connectorAllowed: false }, pointStart: 2010 } },
+      series: [{ name: 'Installation', data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]} ],
+      responsive: { 
+        rules: [{
+          condition: { maxWidth: 500 },
+          chartOptions: { legend: { layout: 'horizontal', align: 'center', verticalAlign: 'bottom' } } 
+        }]
+      }
+    }
   constructor(private afs: AngularFirestore, private route : Router) { }
  pass() {
   this.route.navigateByUrl('main-nav/widget-pie')
@@ -275,10 +184,51 @@ responsive: {
     // this.options1.series[0] = this.countP;
     // this.options1.series[1] = this.countE;
     // Highcharts.chart('container', this.options);
-    Highcharts.chart('container1', this.options1);
-    Highcharts.chart('container2', this.option);
+    // Highcharts.chart('container1', this.options1);
+    // Highcharts.chart('container2', this.option);
 
     // Highcharts.chart()
+    this.getGraphs()
+    
           }
- 
+  async getGraphs() {
+    await console.log('getting graphs')
+    // electric
+    this.afs.collection('requests/').doc('2020').collection('service').doc('requests').valueChanges().subscribe( (data: any) => {
+    console.log(data);
+      console.log(this.options1.series)
+      console.log(this.options1.series[0].data);
+      this.options1.series[0].data = [
+        data.jan, data.feb, data.mar, data.apr, data.may, data.jun, data.jul, data.aug, data.sep, data.oct, data.nov, data.dec
+      ]
+      console.log(this.options1.series[0].data);
+
+//plumbing
+      this.afs.collection('requests/').doc('2020').collection('plumbingService').doc('requests').valueChanges().subscribe( (data: any) => {
+        console.log(data);
+          console.log(this.options1.series)
+          console.log(this.options1.series[0].data);
+          this.options1.series[1].data = [
+            data.jan, data.feb, data.mar, data.apr, data.may, data.jun, data.jul, data.aug, data.sep, data.oct, data.nov, data.dec
+          ]
+          console.log(this.options1.series[0].data);
+          
+          /// ict
+          this.afs.collection('requests/').doc('2020').collection('ICTService').doc('requests').valueChanges().subscribe( (data: any) => {
+            console.log(data);
+              console.log(this.options1.series)
+              console.log(this.options1.series[0].data);
+              this.options1.series[2].data = [
+                data.jan, data.feb, data.mar, data.apr, data.may, data.jun, data.jul, data.aug, data.sep, data.oct, data.nov, data.dec
+              ]
+              console.log(this.options1.series[0].data);
+              Highcharts.chart('container1', this.options1);
+           })
+       })
+   })
+   console.log('what the fuck');
+   
+   Highcharts.chart('container1', this.options1);
+ }   
+
 }

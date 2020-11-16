@@ -1,0 +1,54 @@
+<div id="invoice" style="display: flex; flex-direction: column; margin: 10px;">
+  <div id="invoice-header" style="display: flex; flex-direction: row; justify-content: space-between;">
+    <div class="header-item left" style="display: flex; flex-direction: column; width: 200px;">
+      <div>SOC Electrical</div>
+      <div style="display: flex; flex-direction: column;">
+        <div>829 Mampuru Str</div>
+        <div>Isithama</div>
+        <div>Tembisa</div>
+        <div>1632</div>
+      </div>
+
+      <div style="margin-top: 10px;">081 576 3434</div>
+    </div>
+    <div class="header-item right" style="display: flex; flex-direction: row; width: 200px;">
+      <img src="../../../assets/scc (1).png" alt="Howq asdf">
+    </div>
+  </div>
+
+  <!-- middle -->
+  <div style="width: 100%">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 40px;">
+      <div></div>
+      <div id="date">
+        <table>
+          <tr>
+            <td style="padding-right: 10px;">Invoice No</td><td>{{requestID}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;">Date</td><td>11 September 2020</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;">Amount Due</td><td><textarea>{{array.serviceCost}}</textarea></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; padding-top: 40px;">
+      <div></div>
+      <div id="data">
+        <table style="width: 100%; padding: 0 10px">
+          <tr>
+            <th >Item</th> <th>Description</th> <th>Unit Cost</th> <th>Quantity</th> <th>Total Price</th>
+          </tr>
+          <tr>
+            <td><textarea >{{array.service}}</textarea></td> <td><textarea>{{array.serviceDesc}}</textarea></td> <td><textarea>{{array.serviceCost}}</textarea></td> <td>1</td> <td><textarea>R {{array.serviceCost}}</textarea> </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button mat-button (click)="printPDF()" style="background: rgba(214, 16, 16, 0.781); color: #ffffff;">Create Invoice</button>

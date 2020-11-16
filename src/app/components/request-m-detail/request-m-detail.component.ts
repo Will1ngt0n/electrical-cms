@@ -41,7 +41,7 @@ arrayOfictObj: any [] = [];
   }
   next(){
     this._invoiceService.storeInvoiceM(this.arrayOfictObj,this.arrayOfeleObj);
-    this.route.navigate(['main-nav/invoice'],{queryParams : {flag :this.flag}});
+    this.route.navigate(['main-nav/invoice'],{queryParams : {flag :this.flag, key: this.key}});
   }
 
   ngOnInit() {

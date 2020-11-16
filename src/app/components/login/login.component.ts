@@ -62,5 +62,10 @@ export class LoginComponent implements OnInit {
       }
   ngOnInit() {
     this.authService.check_Authentication();
+
+    this.form.patchValue( {
+      email: 'willington.mnisi@gmail.com',
+      password: 'dangerous'
+    }) 
   }
   }

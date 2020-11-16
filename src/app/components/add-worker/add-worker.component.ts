@@ -127,7 +127,9 @@ cost="";
     this.skillService.addWorker(this.worker);
     // this.route.navigateByUrl("/home");
   }
-
+  viewDetails(id) {
+    this.route.navigate(['/main-nav/reviews'], {queryParams: {collection: 'servicesPlumbing', id: id}})
+  }
   ngOnInit() {
     this.skillService.viewServicePlumb()
     .subscribe((err) => {

@@ -1,25 +1,30 @@
-import * as admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
-
+// import * as functions from 'firebase-functions';
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
 admin.initializeApp();
-
-exports.addAdmin = functions.https.onCall((data, context)=>{
-    return admin.auth().getUserByEmail(data.email).then(user =>{
-        return admin.auth().setCustomUserClaims(user.uid,{
+interface emailData {
+    email: string
+}
+exports.makeAdmin = functions.https.onCall( ( data: any, context: any) => {
+    console.log(data, context);
+    return admin.auth().getUserByEmail(data['email']).then( (user: any) => {
+        return admin.auth().setCustomUserClaims(user.uid, {
             admin: true
         })
-    }).then(()=>{
+    }).then( () => {
         return {
-            message: `Success! ${data.email} has been made an Admin`
+            message: `You have been registered to use with the site`
         }
-    }).catch(err =>{
-        return err;
-    });
-});
+    }).catch( (err: object) => {
+        return err
+    })
+    
+})
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.signInAdmin = functions.https.onCall( (data: any, context: any) => {
+    console.log(data, context);
+    return admin.auth().getUserByEmail(data['email']).then( (user: any) => {
+        console.log(user);
+        return user
+    })
+})

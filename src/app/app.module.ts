@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFirestoreModule  } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions'
 import { FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms'
 import * as firebase from 'firebase';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -66,6 +67,11 @@ import { OutputGraphComponent } from './charts/output-graph/output-graph.compone
 import { ProfileComponent } from './components/profile/profile.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { WidgetPieComponent } from './widgets/widget-pie/widget-pie.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateInvoiceComponent } from './components/create-invoice/create-invoice.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 // import { HomeComponent } from '../app/components/home/home.component';
 const firebaseConfig = {
@@ -99,7 +105,10 @@ RequestAppComponent,
 RequestMDetailComponent,
 OutputGraphComponent,
 ProfileComponent,
-WidgetPieComponent
+WidgetPieComponent,
+SignUpComponent,
+ReviewsComponent,
+CreateInvoiceComponent
   ],
   imports: [
     BrowserModule,
@@ -116,6 +125,7 @@ WidgetPieComponent
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireFunctionsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -149,7 +159,8 @@ WidgetPieComponent
     MatToolbarModule,
     MatTooltipModule,
     MatGridListModule,
-    LayoutModule
+    LayoutModule,
+    NgbModule
   ],
   providers: [HomeComponent],
   bootstrap: [AppComponent]

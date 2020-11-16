@@ -1,0 +1,168 @@
+// #stepper {
+//     position: absolute;
+//     width: 100%;
+//     top: 0px;
+//     // border-radius: 5px 5px 5px 5px;
+//     background-color: rgba(214, 16, 16, 0.781);
+//     // padding-left: 20px ;
+//     height: 20%;
+//     right: 0;
+// }
+
+// // .step {
+// //     position: relative;
+// //     background-color: white;
+// // }
+// // .step:visited {
+// //     background-color: yellow;
+// // }
+// ::ng-deep .mat-step-header .mat-step-icon-selected {
+//     background-color: black;
+// }
+
+// ::ng-deep .mat-step-header .mat-step-icon-after {
+//     background-color: black;
+// }
+
+// #container {
+//     position: absolute;
+//     top: 20%;
+//     height: 45%;
+//     width: 85%;
+//     padding-left: 20px;
+//     border-radius: 5px 5px 5px 5px;
+//     left: 7.5%;
+// }
+
+// .head {
+//     position: absolute;
+//     // background-color: yellow;
+//     height: 40%;
+// }
+
+// // .stop {
+// //     height: 100%;
+// // }
+// .btn {
+//     position: relative;
+//     bottom: 5%;
+//     right: 5px;
+//     height: 100%;
+// }
+
+
+
+// .createinvoice {
+//     position: relative;
+//     bottom: 5%;
+//     right: 5px;
+//     height: 100%;
+//     width: 25%;
+//     color: white;
+// }
+
+// ::ng-deep .mat-progress-bar-fill::after {
+//     background-color: rgba(214, 16, 16, 0.781);
+// }
+
+// ::ng-deep .mat-progress-bar-buffer {
+//     background: rgb(3, 15, 24);
+// }
+
+// ::ng-deep .mat-progress-bar {
+//     border-radius: 2px;
+// }
+
+// .mat-datepicker-toggle {
+//     color: red;
+// }
+
+// ::ng-deep .mat-focused .mat-form-field-label {
+//     /*change color of label*/
+//     color: black !important;
+// }
+
+//  ::ng-deep.mat-form-field-underline {
+//     /*change color of underline*/
+//     background-color: gray !important;
+// }
+
+//  ::ng-deep.mat-form-field-ripple {
+//     /*change color of underline when focused*/
+//     background-color: black !important;
+//     ;
+// }
+
+//  ::ng-deep .mat-form-field-label {
+//     /*change color of label*/
+//     color: black !important;
+// }
+
+mat-card {
+  margin: 0 20px;
+  height: auto;
+}
+mat-list {
+  height: 1600px;
+}
+mat-list-item {
+  height: 500px;
+  margin: 1px;
+}
+h1 {
+  font-size: 20px;
+  color: rgb(50, 50, 50);
+}
+
+h2 {
+  font-size: 18px;
+  color: rgb(50, 50, 50);
+}
+.container {
+    text-align: center;
+    // background-color: black !important;
+}
+
+.user-rate {
+  font-size: 25px !important;
+  line-height: 25px !important;
+  margin: 0;
+  padding: 0;
+  color: #FFC107;
+}
+
+#avg {
+  font-size: 50px !important;
+  line-height: 50px !important;
+}
+.starfill {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: #FFC107;
+    // background-color: #ffa600;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #FFC107;
+    // background-color: #ffa600;
+  }
+  #rating {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  span {
+    color: rgb(50, 50, 50);
+  }
+  p { 
+    color: rgb(50, 50, 50);
+    font-size: 14px;
+  }

@@ -7,9 +7,13 @@ mat-grid-list {
     // left: 80px;
   }
   mat-tab-group {
-    position: absolute;
-    top: 2%;
+    position: relative;
+    top: 0;
     width: 95%;
-    margin-top: 40px;
+    margin-top: 0;
     margin-left: 40px;
   }
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #D62E2E;
+}

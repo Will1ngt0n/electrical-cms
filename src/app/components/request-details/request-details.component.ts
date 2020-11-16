@@ -52,7 +52,7 @@ id : string;
     console.log('test');
     this._invoiceService.storeInvoice("");
     this._invoiceService.storeInvoice(this.array);
-    this.route.navigate(['main-nav/invoice'],{queryParams : {flag :this.flag}});
+    this.route.navigate(['main-nav/invoice'],{queryParams : {flag :this.flag, key: this.key}});
   }
   ngOnInit() {
 

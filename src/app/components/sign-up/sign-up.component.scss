@@ -1,9 +1,16 @@
+:host {
+    height: 100vh;
+ overflow: hidden;   
+}
 .logo {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 50%;
     height: 100%;
     background: linear-gradient(rgba(rgb(238, 11, 11), .75), rgba(rgba(80, 31, 31, 0.692), .85)), url("/assets/bg.jpg") no-repeat;
     // min-height: 100%;
+    // border: 1px solid yellow;
     // background-size: cover;
     // background-position: 50% 0;
     h1 {
@@ -24,6 +31,7 @@
         left: 30%;
     }
 }
+
 #form-cont {
     position: absolute;
     top: 0;
@@ -33,53 +41,41 @@
     // border: 1px solid black;
     overflow-y: auto;
 }
-.loginform {
+.sign-up-form {
     position: relative;
-    top: 20vh;
-    margin: auto;
+    top: 5px;
     width: 60%;
+    margin: auto;
+    overflow-y: auto;
     // border: 1px solid black;
-    // right: 50%;
     // background-color: gray;
 }
 
-.loginform {
+.sign-up-form {
     background: white;
-    padding: 40px;
-    // width: 30%;
+    // padding: 40px;
     border-radius: 10px;
     color: black;
-    //     // img {
-    //     //     height: 30vh;
-    //     //     width: auto;
-    //     //     margin: auto;
-    //     //     display: block;
-    //     // }
-}
 
-// .loginform #title {
-//     font-weight: bold;
-//     font-size: 1.3em;
-// }
-// .loginform .subtitle {
-//     color: #A0A0A0;
-//     margin-bottom: 40px;
-// }
+}
 .example-full-width {
     width: 100%;
+    // width: calc(100% - 10px);
     // margin-bottom: 20px;
     // margin-top: 5px;
-    // background: #EEEEEE;
-    // border-style: none;
-    // border-radius: 5px;
+    // // background: #EEEEEE;
+    // // border-style: none;
+    // // border-radius: 5px;
+    // border-bottom: 1px solid #808080;
     // height: 30px;
+    // padding: 0 0 20px 10px;
 }
 
-.loginform .headings {
+.sign-up-form .headings {
     color: gray;
 }
 
-.loginform button {
+.sign-up-form button {
     background: rgb(238, 54, 54);
     color: white;
     width: 100%;
@@ -87,13 +83,13 @@
     border-radius: 5px;
 }
 
-.loginform .error {
+.sign-up-form .error {
     border-style: solid;
     border-color: red;
     border-width: 1px;
 }
 
-.loginform .failed {
+.sign-up-form .failed {
     color: red;
 }
 

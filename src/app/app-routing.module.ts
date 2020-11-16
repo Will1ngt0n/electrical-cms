@@ -17,6 +17,9 @@ import { RequestMDetailComponent } from './components/request-m-detail/request-m
 import { OutputGraphComponent } from './charts/output-graph/output-graph.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WidgetPieComponent } from './widgets/widget-pie/widget-pie.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { CreateInvoiceComponent } from './components/create-invoice/create-invoice.component';
 
 const routes: Routes = [
 
@@ -29,6 +32,7 @@ const routes: Routes = [
     {path : 'listService', component : ListServiceComponent},
     {path : 'invoice', component : InvoiceComponent},
     {path : 'service', component : ServiceComponent},
+    {path : 'create-invoice', component : CreateInvoiceComponent},
     {path : 'output-graph', component : OutputGraphComponent},
     {path : 'request-app', component : RequestAppComponent},
     {path : 'request', component : RequestComponent},
@@ -36,9 +40,13 @@ const routes: Routes = [
     {path : 'request-m-detail', component : RequestMDetailComponent},
     {path : 'request-details', component : RequestDetailsComponent},
     {path : 'profile', component : ProfileComponent},
-    {path : 'widget-pie', component : WidgetPieComponent}
+    {path : 'widget-pie', component : WidgetPieComponent},
+    {path : 'reviews', component : ReviewsComponent}
   ]},
-  {path : '', component:LoginComponent, pathMatch: 'full'},
+  {path : 'login', component:LoginComponent, pathMatch: 'full'},
+  {path : 'sign-up', component:SignUpComponent, pathMatch: 'full'},
+  {path : '', redirectTo: 'login', pathMatch: 'full'},
+
 
 ];
 

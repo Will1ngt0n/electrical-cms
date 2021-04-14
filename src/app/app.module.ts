@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFirestoreModule  } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions'
-import { FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms'
+// import { FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import * as firebase from 'firebase';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import {HttpClientModule} from '@angular/common/http'
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+// import {HttpClientModule} from '@angular/common/http'
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -48,7 +50,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatGridListModule,
-  MatDialogRef,
+  // MatDialogRef,
 } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -75,40 +77,40 @@ import { CreateInvoiceComponent } from './components/create-invoice/create-invoi
 // import { FlexLayoutModule } from '@angular/flex-layout';
 // import { HomeComponent } from '../app/components/home/home.component';
 const firebaseConfig = {
-    apiKey: "AIzaSyB83CuKn-QSuzzxN6X8l2L5UKqfeb2NjvA",
-    authDomain: "eletrical-engineer-cms.firebaseapp.com",
-    databaseURL: "https://eletrical-engineer-cms.firebaseio.com",
-    projectId: "eletrical-engineer-cms",
-    storageBucket: "eletrical-engineer-cms.appspot.com",
-    messagingSenderId: "931661674739",
-    appId: "1:931661674739:web:65e43541f406b1822c1f86",
-    measurementId: "G-99GQV7XQHK"
-  };
-  firebase.initializeApp(firebaseConfig);
-  
+  apiKey: "AIzaSyB83CuKn-QSuzzxN6X8l2L5UKqfeb2NjvA",
+  authDomain: "eletrical-engineer-cms.firebaseapp.com",
+  databaseURL: "https://eletrical-engineer-cms.firebaseio.com",
+  projectId: "eletrical-engineer-cms",
+  storageBucket: "eletrical-engineer-cms.appspot.com",
+  messagingSenderId: "931661674739",
+  appId: "1:931661674739:web:65e43541f406b1822c1f86",
+  measurementId: "G-99GQV7XQHK"
+};
+firebase.initializeApp(firebaseConfig);
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-LoginComponent,
-MainNavComponent,
-AddWorkerComponent,
-AddServiceComponent,
-ListServiceComponent,
-ListUserComponent,
-RequestComponent,
-InvoiceComponent,
-ServiceComponent,
-RequestDetailsComponent,
-RequestMComponent,
-RequestAppComponent,
-RequestMDetailComponent,
-OutputGraphComponent,
-ProfileComponent,
-WidgetPieComponent,
-SignUpComponent,
-ReviewsComponent,
-CreateInvoiceComponent
+    LoginComponent,
+    MainNavComponent,
+    AddWorkerComponent,
+    AddServiceComponent,
+    ListServiceComponent,
+    ListUserComponent,
+    RequestComponent,
+    InvoiceComponent,
+    ServiceComponent,
+    RequestDetailsComponent,
+    RequestMComponent,
+    RequestAppComponent,
+    RequestMDetailComponent,
+    OutputGraphComponent,
+    ProfileComponent,
+    WidgetPieComponent,
+    SignUpComponent,
+    ReviewsComponent,
+    CreateInvoiceComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,7 @@ CreateInvoiceComponent
     // FlexLayoutModule,
     HighchartsChartModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    HttpClientModule,
+    // HttpClientModule,
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -160,7 +162,10 @@ CreateInvoiceComponent
     MatTooltipModule,
     MatGridListModule,
     LayoutModule,
-    NgbModule
+    NgbModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
   ],
   providers: [HomeComponent],
   bootstrap: [AppComponent]

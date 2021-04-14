@@ -27,7 +27,7 @@
 #container {
     position: absolute;
     top: 20%;
-    height: 45%;
+    height: auto;
     width: 85%;
     padding-left: 20px;
     border-radius: 5px 5px 5px 5px;
@@ -56,13 +56,17 @@
 
 .createinvoice {
     position: relative;
+    // top: 20px;
+    margin-top: 20px;
     bottom: 5%;
     right: 5px;
     height: 100%;
-    width: 25%;
+    width: 100%;
     color: white;
 }
-
+mat-card-header {
+    background: #323232;
+}
 ::ng-deep .mat-progress-bar-fill::after {
     background-color: rgba(214, 16, 16, 0.781);
 }

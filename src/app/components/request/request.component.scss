@@ -2,5 +2,14 @@ hr{
     background-color: red;
 }
 table{
-    width: 95%;
+    // position: relative;
+    width: 100%;
+    // top: 20px;
+}
+
+.containerr {
+    border: 1px solid red;
+    position: relative;
+    width: 70%;
+    top: 20px
 }

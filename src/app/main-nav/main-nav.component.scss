@@ -47,7 +47,9 @@
 .example-container {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100%;
+    width: 100vw;
+    // border: 10px solid green;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -62,6 +64,7 @@
 }
 .list {
     width: 20%;
+    min-width: 250px;
     height: 100vh;
     padding: 0;
     margin: 0;
@@ -135,4 +138,22 @@ img{
     flex-flow: wrap;
     align-items: center;
     align-content: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .example-container {
+        display: block;
+    }
+   .list {
+        position: absolute;
+        width: 280px;
+        // border: 1px solid black;
+        color: green;
+        // left: -240px;
+    }
+    .content {
+        position: relative;
+        left: 0%;
+        width: 100vw;
+    }
 }

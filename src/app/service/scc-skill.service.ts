@@ -34,7 +34,7 @@ delete(obj :any){
 console.log(obj);
     return this.dog.collection('services/').doc(obj.id).delete().then(() =>{
 
-      alert('service '+ obj.name+' successful deleted');
+      // alert('service '+ obj.name+' successful deleted');
     }
     );
 
@@ -43,7 +43,7 @@ delete1(obj :any){
   console.log(obj);
       return this.dog.collection('servicesPlumbing/').doc(obj.id).delete().then(() =>{
   
-        alert('service '+ obj.name+' successful deleted');
+        // alert('service '+ obj.name+' successful deleted');
       }
       );
   
@@ -52,7 +52,7 @@ delete1(obj :any){
     console.log(obj);
         return this.dog.collection('serviceICT/').doc(obj.id).delete().then(() =>{
     
-          alert('service '+ obj.name+' successful deleted');
+          // alert('service '+ obj.name+' successful deleted');
         }
         );
     

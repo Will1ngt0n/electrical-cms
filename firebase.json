@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/Electrical",
+    "public": "dist/sekhasimbe-consientious-company",
     "ignore": [
       "firebase.json",
       "**/.*",

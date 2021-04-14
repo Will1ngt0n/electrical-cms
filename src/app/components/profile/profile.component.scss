@@ -1,23 +1,45 @@
+
+.title{
+    position: relative; top: 20px; bottom: 0px; padding-bottom: 20px ;
+    h1 {
+
+        font-size: 26px;
+        color: rgb(49, 46, 46);
+    
+    }
+}
+
 #form-cont {
     position: relative;
     height: auto;
     width: 60%;
-    margin: auto;
-    // border: 1px solid red;
+    min-width: 320px;
+    margin: 20px auto 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 480px;
+    border: 1px solid rgb(220, 220, 220);
 }
 .container {
     position: relative;
     // left: 42%;
     width: 50%;
+    min-width: 320px;
     margin: auto;
-    top: 20%
+    top: 20px;
 }
-
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .buttons {
     position: relative;
     width: 30%;
+    min-width: 200px;
     margin: auto;
-    top: 10px;
+    // top: 10px;
+    
     // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;

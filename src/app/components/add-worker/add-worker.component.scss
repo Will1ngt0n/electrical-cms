@@ -2,7 +2,7 @@ table {
     width: 95%;
     // position: relative;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 90px;
 }
 
 .one {
@@ -21,4 +21,25 @@ mat-form-field {
     background-color: red;
     // width: 30%;
     color: white;
+}
+.top-float {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    background: rgb(230, 230 , 230);
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    z-index: 2000;
+}
+.example-button {
+    // border: 1px solid red;
+    border-radius: 0;
+    width: 32px !important;
+    max-width: 32px !important;
+    min-width: 32px !important;
+    padding: 0;
+}
+mat-icon {
+    // border: 1px solid blue;
+    margin: 0;
 }

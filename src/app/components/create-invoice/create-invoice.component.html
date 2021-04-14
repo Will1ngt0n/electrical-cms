@@ -1,35 +1,44 @@
-<div id="invoice" style="display: flex; flex-direction: column; margin: 10px;">
+<div #pdfForm id="invoice" *ngIf="(array | json) !== '{}'" style="display: flex; flex-direction: column; margin: 60px 60px 0 60px; color: rgb(0,0,0); height: auto;">
+  <div style="display: flex; flex-direction: row; justify-content: space-around; font-size: 18px; margin-bottom: 20px;">Sekhasimbe Consientious Company (PTY) LTD</div>
   <div id="invoice-header" style="display: flex; flex-direction: row; justify-content: space-between;">
-    <div class="header-item left" style="display: flex; flex-direction: column; width: 200px;">
-      <div>SOC Electrical</div>
-      <div style="display: flex; flex-direction: column;">
-        <div>829 Mampuru Str</div>
-        <div>Isithama</div>
-        <div>Tembisa</div>
-        <div>1632</div>
+    <div class="header-item left" style="display: flex; flex-direction: column; width: 400px;">
+      <div style="display: flex; flex-direction: column; margin-top: 10px;">
+        <div>HEAD OFFICE</div>
+        <div>19403 Serapeng Avenue</div>
+        <div>Bufferzone</div>
+        <div>Mamelodi</div>
+        <div>0122 Pretoria</div>
       </div>
 
-      <div style="margin-top: 10px;">081 576 3434</div>
+      <div style="margin-top: 10px;">
+        <div>Tel: 012 1119 248</div>
+        <div>Cell: 078 668 4178 / 079 450 0892</div>
+        <div>Website: www.sekhasimbecc.africa</div>
+        <div>Email: info@sekhasimbecc.africa</div>
+      </div>
     </div>
     <div class="header-item right" style="display: flex; flex-direction: row; width: 200px;">
-      <img src="../../../assets/scc (1).png" alt="Howq asdf">
+      <img src="../../../assets/logo.PNG" alt="SCC Photo" style="width: 200px;">
     </div>
   </div>
 
   <!-- middle -->
-  <div style="width: 100%">
+  <div style="width: 100%; margin-top: 10px;">
     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 40px;">
       <div></div>
       <div id="date">
         <table>
           <tr>
-            <td style="padding-right: 10px;">Invoice No</td><td>{{requestID}}</td>
+            <td style="padding-right: 10px; font-weight: bold; min-width: 150px">Invoice No:</td><td style="min-width: 200px">{{ array.refNo }}</td>
           </tr>
           <tr>
-            <td style="padding-right: 10px;">Date</td><td>11 September 2020</td>
+            <td style="padding-right: 10px; font-weight: bold; min-width: 150px">Requested:</td><td style="min-width: 200px">{{ array.stamp | date: 'dd MMMM yyyy' }}</td>
           </tr>
           <tr>
-            <td style="padding-right: 10px;">Amount Due</td><td><textarea>{{array.serviceCost}}</textarea></td>
+            <td style="padding-right: 10px; font-weight: bold; min-width: 150px">Date:</td><td style="min-width: 200px">{{ date | date: 'dd MMMM yyyy' }}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px; font-weight: bold; min-width: 150px">Amount Due:</td><td style="min-width: 200px">{{ array.cost | currency: 'R ' }}</td>
           </tr>
         </table>
       </div>
@@ -38,17 +47,43 @@
     <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; padding-top: 40px;">
       <div></div>
       <div id="data">
-        <table style="width: 100%; padding: 0 10px">
+        <table class="request">
           <tr>
-            <th >Item</th> <th>Description</th> <th>Unit Cost</th> <th>Quantity</th> <th>Total Price</th>
+            <th style="width: 15%">Item</th> <th style="width: 40%;">Description</th> <th style="width: 15%">Unit Cost</th> <th style="width: 15%">Total Price</th>
           </tr>
-          <tr>
-            <td><textarea >{{array.service}}</textarea></td> <td><textarea>{{array.serviceDesc}}</textarea></td> <td><textarea>{{array.serviceCost}}</textarea></td> <td>1</td> <td><textarea>R {{array.serviceCost}}</textarea> </td>
-          </tr>
+          <tbody *ngIf="(array['eleObj'] | json) !== '{}'">
+            <tr *ngFor='let item of array["eleObj"]; let i = index'>
+              <td>{{ item.name }}</td> <td>{{ item.requestDesc }}</td> <td>{{ item.cost | currency: 'R ' }}</td><td>R 
+                <textarea *ngIf="!item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;"  (keyup)="changePrice($event, 'eleObj', i)">{{ item.cost }}</textarea>
+                <textarea *ngIf="item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;"  (keyup)="changePrice($event, 'eleObj', i)">{{ item.chargedCost }}</textarea>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="(array['ictObj'] | json) !== '{}'">
+            <tr *ngFor='let item of array["ictObj"]; let i = index'>
+              <td>{{ item.name }}</td> <td>{{ item.requestDesc }}</td> <td>{{ item.cost | currency: 'R ' }}</td><td>R
+                <textarea *ngIf="!item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;" (keyup)="changePrice($event, 'ictObj', i)">{{ item.cost }}</textarea>
+                <textarea *ngIf="item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;" (keyup)="changePrice($event, 'ictObj', i)">{{ item.chargedCost }}</textarea>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="(array['plumbingObj'] | json) !== '{}'">
+            <tr *ngFor='let item of array["plumbingObj"]; let i = index'>
+              <td>{{ item.name }}</td> <td>{{ item.requestDesc }}</td> <td>{{ item.cost | currency: 'R ' }}</td><td>R
+                <textarea *ngIf="!item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;" (keyup)="changePrice($event, 'plumbingObj', i)">{{ item.cost }}</textarea>
+                <textarea *ngIf="item.chargedCost" style="width: 70%; height: 24px; position: relative; top: 3px; margin: 1px;" (keyup)="changePrice($event, 'plumbingObj', i)">{{ item.chargedCost }}</textarea>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
 
   </div>
 </div>
-<button mat-button (click)="printPDF()" style="background: rgba(214, 16, 16, 0.781); color: #ffffff;">Create Invoice</button>
+<div style="position: relative; top: 20px; width: 100%; margin-bottom: 60px; height:40px;"  *ngIf="array['eleObj'] || array['ictObj'] || array['plumbingObj']">
+  <button mat-button (click)="printPreview()" style="position: relative; left: 40px; margin-right: 20px; background: rgba(214, 16, 16, 0.781); color: #ffffff; ">Preview Invoice</button>
+  <button mat-button (click)="printPDF()" style="position: relative; left: 40px; margin-right: 20px; background: rgba(214, 16, 16, 0.781); color: #ffffff;">Create Invoice</button>
+  <button mat-button (click)="archive()" style="position: relative; left: 40px; background-color: rgb(214, 16, 16, 0.781); color:#ffffff">Close Request</button>
+</div>
+

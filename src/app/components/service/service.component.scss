@@ -1,8 +1,21 @@
+:host {
+    // height: 100vh;
+    // border: 100px solid purple;
+    padding: 0;
+}
+// * {
+//     background: #000 !important;
+//     color: #0f0 !important;
+//     outline: solid #f00 1px !important;
+//   }
+.container {
+    min-height: 500px;
+}
 table {
     width: 95%;
     // position: relative;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 90px;
 }
 
 .one {
@@ -31,10 +44,51 @@ mat-tab-group {
 mat-form-field {
     width: 70%;
 }
-
+mat-panel-description {
+    // color: white
+}
 .btn {
     color: rgb(49, 46, 46);
     background-color: red;
     // width: 70%;
     color: white;
+}
+
+.top-float {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    background: rgb(230, 230 , 230);
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    z-index: 2000;
+    .panel {
+        // background: rgb(250, 250 , 250);
+        // background: #323232;
+    }
+}
+
+.example-button {
+    // border: 1px solid red;
+    border-radius: 0;
+    width: 32px !important;
+    max-width: 32px !important;
+    min-width: 32px !important;
+    padding: 0;
+}
+mat-icon {
+    // border: 1px solid blue;
+    margin: 0;
+}
+
+.popover {
+    position: relative !important;
+    z-index: 3000 ;
+    left: 0 !important;
+}
+mwl-confirmation-popver-window {
+    position: relative !important;
+    z-index: 3000 !important;
+    top: 10px !important;
+    left: 50px !important;
 }

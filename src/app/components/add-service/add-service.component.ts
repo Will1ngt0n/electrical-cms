@@ -1,14 +1,14 @@
-import { Component, OnInit,Inject, Input, ViewChild } from '@angular/core';
+import { Component, OnInit,Inject, Input, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { SccSkillService } from '../../service/scc-skill.service';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { HomeComponent } from '../home/home.component';
 import { StoreInvoiceService } from 'src/app/service/store-invoice.service';
+import { AuthGuardService } from 'src/app/service/authguard.service';
 @Component({
   selector: 'app-add-service',
   templateUrl: './add-service.component.html',
@@ -18,52 +18,85 @@ import { StoreInvoiceService } from 'src/app/service/store-invoice.service';
 export class AddServiceComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-service = {
-  name : "",
-  description :"",
-  cost : 0
-
-}
-displayedColumns: string[] = ['name', 'description', 'cost', 'actions'];
-arrayService;
-dataSourc;
-name="ict";
-animal;
+  @ViewChild('container', { static: false }) container: ElementRef;
+  service = {
+    name : "",
+    description :"",
+    cost : 0
+  }
+  error: string = ''
+  displayedColumns: string[] = ['name', 'description', 'cost', 'actions'];
+  arrayService;
+  dataSourc;
+  name="ict";
+  imgUrl
+  animal;
+  serviceName: string =''; serviceDesc: string =''; serviceCost: number = 0; image: File
 @Input() temp:any;
 
-  constructor(private route : Router,private storeUser : StoreInvoiceService,public dialog: MatDialog, private nav : ActivatedRoute,private skillService : SccSkillService) {}
-    // @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(private route: Router, private storeUser : StoreInvoiceService,public dialog: MatDialog, private nav : ActivatedRoute,private skillService : SccSkillService, private authService: AuthGuardService, private render: Renderer2) {}
+
+  openDialog(obj : any): void {
+    console.log(obj)
+    this.storeUser.storeuser(obj);
+    this.dialog.open(HomeComponent, {
+      width: '500px',
+      data: {name: this.name}
+    });
+  }
+  picture
+  myUpload
+  addPicture(event){
+    this.picture = <File>event.target.files[0]
+        let reader = new FileReader();
+        reader.onload = (event: any) => {
+          this.myUpload = event.target.result;
+          console.log(this.myUpload);
+          
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        // if(event.target.files[0]){
+        //   this.uploaderImage[0].style.display = "none"
+        //   this.uploadedImage[0].style.display = "block"
+        // }
+        // this.checkValidity()
+  }
 
 
-    openDialog(obj : any): void {
-      console.log(obj)
-      this.storeUser.storeuser(obj);
-      let a = "electric"
-      
-      this.dialog.open(HomeComponent, {
-        width: '250px',
-        data: {name: this.name}
-      });
-      // this.route.navigate(['main-nav/home'],{queryParams : {state : a}});
-     
+  async addService() {
+    const service: object = {
+      averageRating: 0,
+      cost: this.serviceCost,
+      description: this.serviceDesc,
+      name: this.serviceName,
+      requestsMade: 0 
     }
-  
-      
-    try(arr){
-      // this.skillService.updateService(arr);
-      console.log(arr);
-    }
-  submit(){
-    this.skillService.addPlumService(this.service);
-    // this.route.navigateByUrl("/home");
+    console.log(service);
+
+    let result = await this.authService.addService('servicesICT', service, this.picture);
+    (result['success']) ? (this.clearInputs()) : (this.error = result['message']);
+    // this.clearInputs();
   }
-  try1(){
-    console.log(this.service);
-    console.log(this.temp);
+  clearInputs() {
+    this.serviceCost = 0;
+    this.serviceDesc = '';
+    this.serviceName = '';
+    this.picture = undefined;
+    this.myUpload = undefined;
   }
-  delete(a) {
-    this.skillService.delete2(a);
-    console.log(a.name + " deleted!")
+  panelOpenState: boolean
+  change(bln: boolean) {
+    this.panelOpenState = bln;
+    (bln) 
+    ? this.render.setStyle(this.container.nativeElement, 'min-height', '398px')
+    : this.render.removeStyle(this.container.nativeElement, 'min-height');
+  }
+
+  viewDetails(id: string) {
+    this.route.navigate(['/main-nav/reviews'], {queryParams: {collection: 'servicesICT', id: id}})
+  }
+  delete(item) {
+    this.skillService.delete2(item);
   }
   ngOnInit() {
     this.nav.queryParams.subscribe(data => {
@@ -75,7 +108,6 @@ animal;
   this.skillService.viewServiceICT()
   .subscribe((err) => {
     this.arrayService = err;
-    console.log(this.arrayService)
     console.log(this.arrayService)
     this.dataSourc = new MatTableDataSource(this.arrayService)
     this.dataSourc.paginator = this.paginator;

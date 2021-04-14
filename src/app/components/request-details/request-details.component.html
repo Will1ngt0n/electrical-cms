@@ -1,6 +1,6 @@
 <h2 style="left: 20%;position: absolute;">Service Details</h2>
 
-<mat-card style="width: 50%;top:20%;left: 20%;position: absolute;">
+<mat-card *ngIf="(array | json) !== '{}'" style="width: 50%;top:20%;left: 20%;position: absolute;">
     <mat-card-title>{{array?.refNo}}</mat-card-title>
 
     <mat-card-content>
@@ -8,8 +8,6 @@
         <br> {{array?.serviceDesc}}
     </mat-card-content>
     <mat-card-actions>
-        <i class="material-icons" (click)="next()">
-                description
-                </i>
+        <i class="material-icons" (click)="navigate()"> description </i>
     </mat-card-actions>
 </mat-card>

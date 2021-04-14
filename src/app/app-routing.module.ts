@@ -20,32 +20,34 @@ import { WidgetPieComponent } from './widgets/widget-pie/widget-pie.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CreateInvoiceComponent } from './components/create-invoice/create-invoice.component';
+import { AuthGuard } from './service/auth-guard/auth.guard';
+import { ReverseAuthGuard } from './service/reverse-auth-guard/reverse-auth.guard';
 
 const routes: Routes = [
 
-  {path : 'main-nav', component : MainNavComponent , children : [
-    { path: '', redirectTo: 'output-graph', pathMatch: 'full' },
-    {path : 'home', component:HomeComponent},
-    {path : 'addWorker', component:AddWorkerComponent},
-    {path : 'addService', component:AddServiceComponent},
-    {path : 'listUser', component : ListUserComponent},
-    {path : 'listService', component : ListServiceComponent},
-    {path : 'invoice', component : InvoiceComponent},
-    {path : 'service', component : ServiceComponent},
-    {path : 'create-invoice', component : CreateInvoiceComponent},
-    {path : 'output-graph', component : OutputGraphComponent},
-    {path : 'request-app', component : RequestAppComponent},
-    {path : 'request', component : RequestComponent},
-    {path : 'request-m', component : RequestMComponent},
-    {path : 'request-m-detail', component : RequestMDetailComponent},
-    {path : 'request-details', component : RequestDetailsComponent},
-    {path : 'profile', component : ProfileComponent},
-    {path : 'widget-pie', component : WidgetPieComponent},
-    {path : 'reviews', component : ReviewsComponent}
+  { path : 'main-nav', component : MainNavComponent , children : [
+    { path: '', redirectTo: 'listService', pathMatch: 'full' },
+    { path : 'home', component:HomeComponent, canActivate: [AuthGuard] },
+    { path : 'addWorker', component:AddWorkerComponent, canActivate: [AuthGuard] },
+    { path : 'addService', component:AddServiceComponent, canActivate: [AuthGuard] },
+    { path : 'listUser', component : ListUserComponent, canActivate: [AuthGuard] },
+    { path : 'listService', component : ListServiceComponent, canActivate: [AuthGuard] },
+    { path : 'invoice', component : InvoiceComponent, canActivate: [AuthGuard] },
+    { path : 'service', component : ServiceComponent, canActivate: [AuthGuard] },
+    { path : 'create-invoice', component : CreateInvoiceComponent, canActivate: [AuthGuard] },
+    { path : 'output-graph', component : OutputGraphComponent, canActivate: [AuthGuard] },
+    { path : 'request-app', component : RequestAppComponent, canActivate: [AuthGuard] },
+    { path : 'request', component : RequestComponent, canActivate: [AuthGuard] },
+    { path : 'request-m', component : RequestMComponent, canActivate: [AuthGuard] },
+    { path : 'request-m-detail', component : RequestMDetailComponent, canActivate: [AuthGuard] },
+    { path : 'request-details', component : RequestDetailsComponent, canActivate: [AuthGuard] },
+    { path : 'profile', component : ProfileComponent, canActivate: [AuthGuard] },
+    { path : 'widget-pie', component : WidgetPieComponent, canActivate: [AuthGuard] },
+    { path : 'reviews', component : ReviewsComponent }
   ]},
-  {path : 'login', component:LoginComponent, pathMatch: 'full'},
-  {path : 'sign-up', component:SignUpComponent, pathMatch: 'full'},
-  {path : '', redirectTo: 'login', pathMatch: 'full'},
+  { path : 'login', component:LoginComponent, pathMatch: 'full', canActivate: [ReverseAuthGuard]},
+  { path : 'sign-up', component:SignUpComponent, pathMatch: 'full', canActivate: [ReverseAuthGuard]},
+  { path : '', redirectTo: 'main-nav', pathMatch: 'full'},
 
 
 ];

@@ -71,7 +71,9 @@ export class ListUserComponent implements OnInit {
     console.log(this.obj)
     this.route.navigate(['/addService'], {queryParams: {obj : this.obj}});
   }
-  
+  applyFilter(event) {
+
+  }
   ngOnInit() {
 
     this.afs.collection('user/').snapshotChanges().subscribe((data: any) => {

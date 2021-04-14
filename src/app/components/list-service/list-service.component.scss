@@ -1,26 +1,30 @@
-// table {
-//     width: 100%;
-//  }
 mat-grid-tile {
     background: lightblue;
     
   }
   mat-grid-list {
     width: 90%;
-    // position: relative;
     margin-top: 40px;
     margin-left: 90px;
-    // align-content: right;
-    // left: 80px;
   }
+  mat-tab {
+    height: 100%;
+    border: 1px solid red;
+  }
+
   mat-tab-group {
     position: relative;
-    top: 0;
-    width: 95%;
-    margin-top: 0;
-    margin-left: 40px;
+    top: 20px;
+    width: calc(100% - 80px);
+    // margin-top: 0;
+    margin: 0 40px;
+    padding-bottom: 20px;
+    // border: 1px solid red;
   }
   ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
 
     background-color: #D62E2E !important;
+  }
+  app-service {
+    width: 10% !important;
   }

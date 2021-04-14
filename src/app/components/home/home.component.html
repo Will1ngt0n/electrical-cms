@@ -1,26 +1,27 @@
 <!-- <div class="one">
    -->
 <h2> Service Update</h2>
-<div>
+<div class="container">
     <div class="button">
-        <img [src]="photoURL" alt="avatar" (click)="file.click()" height="145" width="220">
-        <input #file type="file" style="display: none;" (change)="uploadFile(file.files)" accept='image/*' />
+        <img matToolTip="Change image" [src]="photoURL" alt="avatar" (click)="file.click()" class="image">
+        <input #file type="file" style="display: none; cursor: pointer;" (change)="uploadFile(file.files)" accept='image/*' />
         <!--  <input id="file-input1" type="file" accept="image/*" (change)="uploadFile(file.files)" /> -->
 
     </div>
 
-    <br>
-    <mat-form-field>
-        <input matInput placeholder="Service name" [(ngModel)]="name" color="primary">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <input matInput placeholder="Service Description" [(ngModel)]="description">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <input matInput placeholder="Service Cost" type="number" [(ngModel)]="cost">
-    </mat-form-field>
-    <br>
-    <button mat-button style="align-items: flex-end;" (click)="test()" class="btn">submit</button>
+    <div class="inputs">
+        <mat-form-field>
+            <input matInput placeholder="Service name" [(ngModel)]="name" color="primary">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Service Description" [(ngModel)]="description">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Service Cost" type="number" [(ngModel)]="cost">
+        </mat-form-field>
+    </div>
+
+    <button mat-button style="align-items: flex-end;" (click)="update()" class="btn">SUBMIT</button>
 </div>

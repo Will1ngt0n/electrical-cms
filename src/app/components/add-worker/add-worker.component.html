@@ -1,70 +1,66 @@
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"hideToggle="true">
-        <mat-expansion-panel-header>
-            <!-- <mat-panel-title>
-                Add Plumbing Service
-            </mat-panel-title> -->
-            <mat-panel-description>
-                Add a new Plumbing service
-            </mat-panel-description>
-            <mat-icon *ngIf="!panelOpenState" [ngStyle]="{'color':'#D62E2E'}">add</mat-icon>
-            <mat-icon *ngIf="panelOpenState" [ngStyle]="{'color':'#D62E2E'}">remove</mat-icon>
-        </mat-expansion-panel-header>
-        <div class="one">
-            <div class="button">
-                <img [src]="imgUrl" alt="avatar" (click)="file.click()" height="400" width="400">
-                <input #file type="file" style="display: none;" (change)="uploadFile(file.files)" accept='image/*' />
-                <!--  <input id="file-input1" type="file" accept="image/*" (change)="uploadFile(file.files)" /> -->
+<div #container style="min-height: 330px;">
+    <mat-accordion class="top-float">
+        <mat-expansion-panel (opened)="change(true)" (closed)="change(false)" hideToggle="true">
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    Add a new Plumbing service
+                </mat-panel-description>
+                <mat-icon *ngIf="!panelOpenState" [ngStyle]="{'color':'#D62E2E'}">add</mat-icon>
+                <mat-icon *ngIf="panelOpenState" [ngStyle]="{'color':'#D62E2E'}">remove</mat-icon>
+            </mat-expansion-panel-header>
+            <div class="one">
+                <div class="button">
+                    <label for="photo">
+                        <input type="file" style="display: none;" accept="image/x-png,image/jpeg" id="photo" (change)='addPicture($event)'>
+                        <img *ngIf="!myUpload" src="../../../assets/logo.PNG" width="140px" height="140px" alt="">
+                        <img *ngIf="myUpload" src="{{myUpload}}" width="140px" height="140px" alt="">
+                    </label>
+                </div>
+                <h4>Add a new service</h4>
+                <mat-form-field>
+                    <input matInput placeholder="Service name" [(ngModel)]="serviceName">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput placeholder="Service Description" [(ngModel)]="serviceDesc">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput placeholder="Service Cost" type="number" [(ngModel)]="serviceCost">
+                </mat-form-field>
+                <br>
+                <button mat-button style="align-items: flex-end;" (click)="addService()" class="btn">SUBMIT</button>
             </div>
-            <h4>Add a new service</h4>
-            <mat-form-field>
-                <input matInput placeholder="Service name" [(ngModel)]="service.name">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input matInput placeholder="Service Description" [(ngModel)]="service.description">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input matInput placeholder="Service Cost" type="number" [(ngModel)]="service.cost">
-            </mat-form-field>
-            <br>
-            <button mat-button style="align-items: flex-end;" (click)="test()" class="btn">submit</button>
-        </div>
-
-    </mat-expansion-panel>
-
-</mat-accordion>
-
-<mat-icon aria-hidden="false" aria-label="Example home icon">insert</mat-icon>
-<table mat-table [dataSource]="dataSourc">
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Service</th>
-        <td mat-cell *matCellDef="let element" (click)="viewDetails(element.id)"> {{element.name}} </td>
-
-    </ng-container>
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>description</th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
-    <ng-container matColumnDef="cost">
-        <th mat-header-cell *matHeaderCellDef>cost</th>
-        <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-    </ng-container>
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> </th>
-
-        <!-- <mat-header-cell *matHeaderCellDef></mat-header-cell> -->
-        <td mat-cell *matCellDef="let row">
-            <button mat-icon-button (click)="openDialog(row)" matTooltip="Update row" matTooltipPosition="before" matTooltipClass="example-tooltip" aria-label="Button that shows a red tooltip" class="example-button"><mat-icon>launch</mat-icon></button>
-            <button mat-icon-button color="warn" (click)="delete(row)" matTooltip="Delete row" matTooltipPosition="after" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip" class="example-button"><mat-icon>delete_outline</mat-icon></button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
-
-</table>
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+    <table mat-table [dataSource]="dataSourc">
+    
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Service</th>
+            <td mat-cell *matCellDef="let element" (click)="viewDetails(element.id)"> {{element.name}} </td>
+    
+        </ng-container>
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element" (click)="viewDetails(element.id)"> {{element.description}} </td>
+        </ng-container>
+        <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef width="90px">Cost</th>
+            <td mat-cell *matCellDef="let element" (click)="viewDetails(element.id)"> {{element.cost | currency: 'R '}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef width="70px">Actions</th>
+            <td mat-cell *matCellDef="let row" width="70px" style="padding: 0;">
+                <div style="display: flex; flex-direction: row; justify-content: center; width: 70px;">
+                    <button mat-button (click)="openDialog(row)" matTooltip="Update row" matTooltipPosition="before" matTooltipClass="example-tooltip" aria-label="Button that shows a red tooltip" class="example-button"><mat-icon>launch</mat-icon></button>
+                    <!-- <button mat-button color="warn" (click)="delete(row)" matTooltip="Delete row" matTooltipPosition="after" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip" class="example-button"><mat-icon>delete_outline</mat-icon></button>     -->
+                    <button mat-button color="warn" class="example-button" mwlConfirmationPopover [popoverTitle]="Delete" [popoverMessage]="'Item will be permanently deleted, continue?'" placement="left" (confirm)="delete(row);" (cancel)="cancelClicked = true"><mat-icon>delete_outline</mat-icon></button>
+                </div>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

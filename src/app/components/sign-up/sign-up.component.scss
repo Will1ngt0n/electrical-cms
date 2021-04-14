@@ -15,7 +15,7 @@
     // background-position: 50% 0;
     h1 {
         position: absolute;
-        top: 70%;
+        top: 60%;
         left: 18%;
         color: white;
     }
@@ -27,7 +27,7 @@
     // }
     img {
         position: absolute;
-        top: 30%;
+        top: 20%;
         left: 30%;
     }
 }
@@ -43,7 +43,7 @@
 }
 .sign-up-form {
     position: relative;
-    top: 5px;
+    top: 20px;
     width: 60%;
     margin: auto;
     overflow-y: auto;
@@ -92,9 +92,24 @@
 .sign-up-form .failed {
     color: red;
 }
+.error {
+    
+    color:rgb(238, 54, 54);
+    // box-shadow: 10px 5px 5px black;
+    border: none !important;
+}
+.ng-error {
+    width: 100%;
+    color: rgb(238, 54, 54);
+    text-align: center;
+    span {
+        color: rgb(238, 54, 54);
+    }
+}
 
 .admin {
     color: rgb(238, 54, 54);
+    text-align: center;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {

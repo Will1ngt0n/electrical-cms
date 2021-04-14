@@ -7,7 +7,7 @@
           <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
         </span>
       </ng-template>
-    <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true" [starTemplate]="star" id="avg-rate"></ngb-rating> <span>{{rating}}/5 by {{usersNo}} users</span>
+    <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true" [starTemplate]="star" id="avg-rate"></ngb-rating> <span>{{rating | number : '1.0-1'}}/5 by {{usersNo}} users</span>
   </div>
 </mat-card>
 <br>
@@ -24,39 +24,6 @@
       </p>
 
     </div>
+    <hr style="color: black; border: 0.5px solid rgb(200, 200, 200); height: 0;">
   </div>
-
-  <!-- <div>
-    <div>Username Mnisi</div>
-    <div style="display: flex; flex-direction: row;">
-      <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true" class="user-rate"></ngb-rating>&nbsp; <div style="display: inline;"><div style="display: flex; flex-direction: row; align-content: center;"><span style="line-height: 25px; font-size: 3px; color: rgb(50, 50, 50);">&#9899;</span></div></div>&nbsp;<span style=" font-size: 14px; font-weight: bold; line-height: 25px;">Just the comment title</span>
-    </div>
-
-    <div class="comment">
-      <p>
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-      </p>
-
-    </div>
-  </div>
-  <div>
-    <div>Username Mnisi</div>
-    <div style="display: flex; flex-direction: row;">
-      <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true" class="user-rate"></ngb-rating>&nbsp; <div style="display: inline;"><div style="display: flex; flex-direction: row; align-content: center;"><span style="line-height: 25px; font-size: 3px; color: rgb(50, 50, 50);">&#9899;</span></div></div>&nbsp;<span style=" font-size: 14px; font-weight: bold; line-height: 25px;">Just the comment title</span>
-    </div>
-
-    <div class="comment">
-      <p>
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-        Comment comment yada yada yada yada comment. More comments. More about me, and you. Comment comment yada yada yada yada comment. More comments. More about me, and you.
-      </p>
-
-    </div>
-  </div> -->
-
 </mat-card>

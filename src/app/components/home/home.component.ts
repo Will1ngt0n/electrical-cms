@@ -160,6 +160,9 @@ if(this.flag == 'ict') {
 this.dialogRef.close();
 
 }
+update() {
+  
+}
   ngOnInit() {
     this.name = this.storeUser.getUser().name;
     this.description = this.storeUser.getUser().description;

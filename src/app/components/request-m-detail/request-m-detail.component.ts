@@ -39,7 +39,7 @@ arrayOfictObj: any [] = [];
     })
     // console.log(this.arrayOfObjects)
   }
-  next(){
+  navigate(){
     this._invoiceService.storeInvoiceM(this.arrayOfictObj,this.arrayOfeleObj);
     this.route.navigate(['main-nav/invoice'],{queryParams : {flag :this.flag, key: this.key}});
   }

@@ -74,7 +74,20 @@
     // border-radius: 5px;
     // height: 30px;
 }
-
+.error {
+    
+    color:rgb(238, 54, 54);
+    // box-shadow: 10px 5px 5px black;
+    border: none !important;
+}
+.ng-error {
+    width: 100%;
+    color: rgb(238, 54, 54);
+    text-align: center;
+    span {
+        color: rgb(238, 54, 54);
+    }
+}
 .loginform .headings {
     color: gray;
 }
@@ -99,6 +112,7 @@
 
 .admin {
     color: rgb(238, 54, 54);
+    text-align: center;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {

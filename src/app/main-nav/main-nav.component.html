@@ -1,41 +1,45 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened"class="list">
-        <div class="one">
-            <div class="profile">
-                <div class="header">
-                    <h2 class="head" id="username">{{username}}</h2>
-                    <h4 class="head" id="email">{{email}}</h4>
-                    <div id="photo-div">
-                        <img class="img" (click)="profile()" src="../../assets/logo.PNG">
+<div #container>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav [mode]='mode' [(opened)]="close" class="list">
+            <div class="one">
+                <div class="profile">
+                    <div class="header">
+                        <h2 class="head" id="username">{{username}}</h2>
+                        <h4 class="head" id="email">{{email}}</h4>
+                        <div id="photo-div">
+                            <img *ngIf="!photoUrl" class="img" (click)="profile()" src="../../assets/logo.PNG">
+                            <img *ngIf="photoUrl" class="img" (click)="profile()" src="{{photoUrl}}">
+                        </div>
+                        
                     </div>
-                    
+                </div>
+                <!-- <mat-divider class="mat-divider"></mat-divider> -->
+                <div id="button-cont">
+                    <!-- <button mat-button [routerLink]="['output-graph']">Home</button> -->
+                    <!-- <button mat-button [routerLink]="['listUser']">Users</button> -->
+                    <button mat-button (click)="push()">Services</button>
+                    <!-- <button mat-button style="align-items: flex-end;"   [routerLink]="['/main-nav/listService']" [routerLink]="['/main-nav/invoice']">Invoice</button> -->
+                    <button mat-button [routerLink]="['request']">Request</button>
+                    <!-- <button mat-button (click)="logout()">Logout</button> -->
+                    <button mat-button mwlConfirmationPopover [popoverTitle]="'Logout'" [popoverMessage]="'You are about to log out, continue?'"  placement="top" (confirm)="logout();" (cancel)="'cancelClicked = true'">Logout</button>
                 </div>
             </div>
-            <!-- <mat-divider class="mat-divider"></mat-divider> -->
-            <div id="button-cont">
-                <button mat-button [routerLink]="['output-graph']">Home</button>
-                <!-- <button mat-button [routerLink]="['listUser']">Users</button> -->
-                <button mat-button (click)="push()">Services</button>
-                <!-- <button mat-button style="align-items: flex-end;"   [routerLink]="['/main-nav/listService']" [routerLink]="['/main-nav/invoice']">Invoice</button> -->
-                <button mat-button [routerLink]="['request-app']">Request</button>
-                <button mat-button (click)="logout()">Logout</button>
-            </div>
-        </div>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-        <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
-
-        <mat-toolbar id="toolbar">
-            <mat-icon aria-hidden="false" aria-label="Example menu icon" (click)="sidenav.toggle()">menu
-                <i class="material-icons" class="icon" (click)="next()">
-                    person
-                    </i>
-            </mat-icon>
-            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-            <h1>Sekhasimbe Conientious Company(PTY)LTD</h1>
-        </mat-toolbar>
-        <!-- <app-output-graph></app-output-graph> -->
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+        </mat-sidenav>
+    
+        <mat-sidenav-content class="content">
+            <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
+    
+            <mat-toolbar id="toolbar">
+                <mat-icon aria-hidden="false" aria-label="Example menu icon" (click)="sidenav.toggle(); toggleMode()">menu
+                    <!-- <i class="material-icons" class="icon" (click)="next()">
+                        person
+                        </i> -->
+                </mat-icon>
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                <h1>Sekhasimbe Consientious Company (PTY) LTD.</h1>
+            </mat-toolbar>
+            <!-- <app-output-graph></app-output-graph> -->
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

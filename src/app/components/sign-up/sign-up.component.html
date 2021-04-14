@@ -1,42 +1,72 @@
 <div class="logo">
-    <img src="../../../assets/scc (1).png" style="max-width: 40%; min-width: 30%; max-height: 40%;">
-    <h1>Sekhasimbe Conientious Company(pty)ltd</h1>
+    <img src="../../../assets/logo.PNG" style="max-width: 40%; min-width: 30%; max-height: 40%;">
+    <h1>Sekhasimbe Consientious Company (pty) ltd</h1>
 </div>
 <div id="form-cont">
     <div class="sign-up-form">
-        <h1 class="admin">Admin</h1>
+        <h1 class="admin">Sign up</h1>
         <form [formGroup]="form">
             <mat-form-field class="example-full-width">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" placeholder="Email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
             </mat-form-field>
+            <ng-container class="ng-error" *ngIf="!form.controls.email.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
+
             <mat-form-field class="example-full-width">
                 <mat-label>Name</mat-label>
                 <input matInput type="text" placeholder="Name" formControlName="name" [ngClass]="{'error': !valid('name')}" />
             </mat-form-field>
+            <ng-container class="ng-error" *ngIf="!form.controls.name.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
             <mat-form-field class="example-full-width">
                 <mat-label>Surname</mat-label>
                 <input matInput type="text" placeholder="Surname" formControlName="surname" [ngClass]="{'error': !valid('name')}" />
             </mat-form-field>
+            <ng-container class="ng-error" *ngIf="!form.controls.surname.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
             <mat-form-field class="example-full-width">
                 <mat-label>Number</mat-label>
                 <input matInput type="text" placeholder="Number" formControlName="number" [ngClass]="{'error': !valid('name')}" />
             </mat-form-field>
+            <ng-container class="ng-error" *ngIf="!form.controls.number.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
             <mat-form-field class="example-full-width">
                 <mat-label>Username</mat-label>
                 <input matInput type="text" placeholder="Username" formControlName="username" [ngClass]="{'error': !valid('username')}" />
             </mat-form-field>
             <br>
+            <ng-container class="ng-error" *ngIf="!form.controls.username.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
             <mat-form-field class="example-full-width">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" placeholder="Password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
             </mat-form-field>
+            <ng-container class="ng-error" *ngIf="!form.controls.password.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
             <mat-form-field class="example-full-width">
                 <mat-label>Confirm password</mat-label>
                 <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword" [ngClass]="{'error': !valid('password')}" />
             </mat-form-field>
-            <button (click)="submit()">Register</button>
+            <ng-container class="ng-error" *ngIf="!form.controls.confirmPassword.valid">
+                <span class="ng-error">Email is badly formatted.</span>
+                <br>
+            </ng-container>
+            <button [disabled]="!form.valid" (click)="submit()">Register</button>
             <p class="failed mat-body-1">{{error}}</p>
         </form>
+        <div style=" margin: auto; width: 240px ;">Already have an account? <span style="color: rgb(238, 54, 54); cursor: pointer;" (click)="login()">Log in</span></div>
     </div>
 </div>

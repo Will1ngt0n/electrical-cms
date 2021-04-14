@@ -1,26 +1,14 @@
 <mat-card class="card" style="width: 50%;top:20%;left: 20%;position: absolute;">
     <mat-card-title>{{array?.refNo}}&nbsp;&nbsp;</mat-card-title>
-    <!--     
-    <mat-card-content *ngFor="let ten of arrayOfictObj | arrayOfeleObj"> -->
     <h4>{{array?.stamp | date : 'medium'}}</h4>
     <mat-card-content>
-        <!-- {{arra?.time}} &nbsp;&nbsp;&nbsp;{{array?.date}}<br> -->
-        <!-- {{array[ten].eleObj<br> -->
-        <div *ngFor="let i of arrayOfictObj">
-            {{i}}
-
-
-        </div>
+        <div *ngFor="let i of arrayOfictObj"> {{i}} </div>
         <br>
         <div *ngFor="let item of arrayOfeleObj">
             {{item}}
         </div>
-        <!-- {{ten}}<br> -->
-        <!-- {{arra?.ictObj}} -->
     </mat-card-content>
     <mat-card-actions>
-        <i class="material-icons" (click)="next()">
-                description
-                </i>
+        <i class="material-icons" (click)="navigate()"> description </i>
     </mat-card-actions>
 </mat-card>

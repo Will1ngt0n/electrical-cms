@@ -1,3 +1,14 @@
 table, th, td, tr {
-    border: 1px solid rgb(50,50,50);
+    border: 1px solid rgb(150, 150, 150);
+    padding: 5px;
+}
+
+.request {
+    width:100%;
+    table-layout: fixed;
+    overflow-wrap: break-word;
+}
+
+textarea {
+    border: 1px solid rgb(250, 250, 250);
 }

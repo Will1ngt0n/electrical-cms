@@ -1,15 +1,17 @@
 <div class="title" style="position: relative; width: 30%; margin: auto; text-align: center;">
     <h1>User Profile</h1>
 </div>
-<!-- <div id="cont"></div> -->
 <div id="form-cont">
     <div class="container">
         <div class="button">
-            <!-- <img [src]="imgUrl" alt="avatar" (click)="file.click()" height="140" width="95"> -->
-            <input #file type="file" style="display: none;" (change)="uploadFile(file.files)" accept='image/*' />
-            <!--  <input id="file-input1" type="file" accept="image/*" (change)="uploadFile(file.files)" /> -->
-    
+            <label for="photo">
+                <input type="file" style="display: none;" accept="image/x-png,image/jpeg" id="photo" (change)='addPicture($event)'>
+                <img *ngIf="!myUpload && !profileImg" src="../../../assets/scc (1).png" width="140px" height="140px" alt="">
+                <img *ngIf="myUpload" src="{{myUpload}}" width="140px" height="140px" alt="">
+                <img *ngIf="profileImg && !myUpload" src="{{profileImg}}" width="140px" height="140px" alt="">
+            </label>
         </div>
+
         <form [formGroup]="form">
             <mat-form-field class="example-full-width">
                 <mat-label>Name</mat-label>
@@ -31,10 +33,10 @@
                 <input matInput formControlName="number">
             </mat-form-field>
         </form>
+        <div class="buttons">
+            <button mat-button (click)="updateAdmin()" class="btn" [disabled]="!form.valid">Update</button>
+            <button mat-button (click)="logout()" class="btn">Log out</button>
+        </div>
+    </div>
 
-    </div>
-    <div class="buttons">
-        <button mat-button (click)="updateAdmin()" class="btn">update</button>&nbsp;&nbsp;
-        <button mat-button (click)="logout()" class="btn">LogOut</button>
-    </div>
 </div>

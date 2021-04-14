@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { SccSkillService } from 'src/app/service/scc-skill.service';
 import { MatTableDataSource } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +9,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { HomeComponent } from '../home/home.component';
 
 import { StoreInvoiceService } from '../../service/store-invoice.service';
+import { AuthGuardService } from 'src/app/service/authguard.service';
+import { Router } from '@angular/router';
 export interface Food {
   calories: number;
   carbs: number;
@@ -19,11 +21,13 @@ export interface Food {
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
-  styleUrls: ['./service.component.scss']
+  styleUrls: ['./service.component.scss'],
+  host:{'style':'width:100%'}
 })
 export class ServiceComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild('container', {static: true}) container: ElementRef;
   imgURL ;
   arrayService;
   arrayICTService;
@@ -41,7 +45,8 @@ export class ServiceComponent implements OnInit {
   storag: any;
   mainImage: any;
   downloadU: any;
-  constructor(private storeUser : StoreInvoiceService,public dialog: MatDialog,private skill: SccSkillService, private storage: AngularFireStorage,) { }
+  error : string = '';
+  constructor(private route: Router, private storeUser : StoreInvoiceService,public dialog: MatDialog,private skill: SccSkillService, private storage: AngularFireStorage, private authService: AuthGuardService, private render: Renderer2) { }
   dataSourc: any;
   message;
   imgUrl;
@@ -55,11 +60,13 @@ export class ServiceComponent implements OnInit {
     cost: 0,
     image: ''
   };
+  serviceName: string =''; serviceDesc: string =''; serviceCost: number = 0; image: File
   openDialog(obj : any): void {
     console.log(obj)
     this.storeUser.storeuser(obj);
     const dialogRef = this.dialog.open(HomeComponent, {
-      width: '250px',
+      width: '500px',
+      // height: '600px',
       data: {name: this.name}
     });
 
@@ -71,46 +78,30 @@ export class ServiceComponent implements OnInit {
   
 
 }
-  uploadFile(files) {
-    if (files.length === 0)
-    return;
-
-  var mimeType = files[0].type;
-  if (mimeType.match(/image\/*/) == null) {
-    // this.message = "Only images are supported.";
-    return;
+picture
+myUpload
+addPicture(event){
+  this.picture = <File>event.target.files[0]
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.myUpload = event.target.result;
+        console.log(this.myUpload);
+        
+      };
+      reader.readAsDataURL(event.target.files[0]);
+      // if(event.target.files[0]){
+      //   this.uploaderImage[0].style.display = "none"
+      //   this.uploadedImage[0].style.display = "block"
+      // }
+      // this.checkValidity()
+}
+  panelOpenState: boolean
+  change(bln) {
+    this.panelOpenState = bln;
+    (bln) 
+      ? this.render.setStyle(this.container.nativeElement, 'min-height', '398px')
+      : this.render.removeStyle(this.container.nativeElement, 'min-height');
   }
-
-  const file = files[0];
-  console.log(file)
-  const fileName = files[0].name;
-  var reader = new FileReader();
-  // this.imagePath = files;
-  reader.readAsDataURL(files[0]);
-  console.log(reader)
-  reader.onload = (_event) => {
-    this.imgURL = reader.result;
-    console.log(this.imgURL)
-    console.log(reader.result)
-  }
-  console.log(this.imgURL)
-    // const file = event.target.files[0];
-    const filePath = 'pics/PIC' + Math.random().toString(36).substring(2);
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        this.downloadU = fileRef.getDownloadURL().subscribe(url => {
-          console.log(url);
-          this.mainImage = url
-          this.uploadPercent = null;
-        });
-      })
-    ).subscribe();
-  }
-
   uploadProfilePic(files) {
     console.log(files);
 
@@ -146,9 +137,8 @@ export class ServiceComponent implements OnInit {
     console.log(a.name + " updated!");
     this.skill.updateService(a);
   }
-  delete(a) {
-    this.skill.delete(a);
-    console.log(a.name + " deleted!")
+  delete(item) {
+    this.skill.delete(item);
   }
   ngOnInit() {
 
@@ -174,6 +164,28 @@ export class ServiceComponent implements OnInit {
 
 
 
+  }
+  viewDetails(id: string) {
+    this.route.navigate(['/main-nav/reviews'], {queryParams: {collection: 'services', id: id}})
+  }
+  async addService() {
+    const service: object = {
+      averageRating: 0,
+      cost: this.serviceCost,
+      description: this.serviceDesc,
+      name: this.serviceName,
+      requestsMade: 0 
+    }
+    console.log(service);
+    const result = await this.authService.addService('services', service, this.picture);
+    (result['success']) ? (this.clearInputs()) : (this.error = result['message']);
+  }
+  clearInputs() {
+    this.serviceCost = 0;
+    this.serviceDesc = '';
+    this.serviceName = '';
+    this.picture = undefined;
+    this.myUpload = undefined;
   }
 
 }
